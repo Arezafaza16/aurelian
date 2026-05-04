@@ -14,25 +14,25 @@ export default function HeroSection({ onVideoReady }: HeroSectionProps) {
         <video
           ref={videoRef}
           autoPlay
-          loop
           muted
           playsInline
           preload="metadata"
           onTimeUpdate={(e) => {
             const video = e.currentTarget;
-            
-            // Turn grayscale after 1.5 seconds
-            if (video.currentTime >= 1.5 && !isGrayscale) {
+            if (!video.duration) return;
+
+            // Turn grayscale 1.5s before ending
+            if (video.currentTime >= video.duration - 1.5 && !isGrayscale) {
               setIsGrayscale(true);
             }
 
-            // Trigger hero reveal after 3 seconds
-            if (video.currentTime >= 3) {
+            // Trigger hero reveal 1s before ending
+            if (video.currentTime >= video.duration - 1) {
               onVideoReady();
             }
           }}
           onEnded={onVideoReady}
-          src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-beautiful-beach-and-the-ocean-1563-large.mp4"
+          src="https://www.pexels.com/download/video/33628474/"
           className={`w-full h-full object-cover opacity-60 scale-105 transition-[filter] duration-[1500ms] ease-in-out ${
             isGrayscale ? 'grayscale' : 'grayscale-0'
           }`}

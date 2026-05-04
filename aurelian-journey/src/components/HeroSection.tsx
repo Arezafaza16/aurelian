@@ -32,7 +32,7 @@ export default function HeroSection({ onVideoReady }: HeroSectionProps) {
             }
           }}
           onEnded={onVideoReady}
-          src="https://www.pexels.com/download/video/33628474/"
+          src="/hero.mp4"
           className={`w-full h-full object-cover opacity-60 scale-105 transition-[filter] duration-[1500ms] ease-in-out ${
             isGrayscale ? 'grayscale' : 'grayscale-0'
           }`}
